@@ -10,7 +10,7 @@ export class ImageService {
     constructor(@InjectModel(Image.name) private model: Model<Image>) {}
 
     getAll() {
-        return 'getting all images!';
+        return this.model.find().exec();
     }
 
     create(body: CreateImageDTO) {
