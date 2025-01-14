@@ -9,8 +9,8 @@ export class ImageController {
     constructor(private service: ImageService) { }
 
     @Get()
-    getAll(@Query() pagination: PaginationDTO) {
-        return this.service.getAll(pagination);
+    getAll(@Query() query) {
+        return this.service.getAll(query);
     }
 
     @Post()
