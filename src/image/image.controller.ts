@@ -7,6 +7,11 @@ export class ImageController {
 
     constructor(private service: ImageService) { }
 
+    @Get('all-no-pag')
+    getAllWithoutPagination() {
+        return this.service.getAllWithoutPagination();
+    }
+    
     @Get()
     getAll(@Query() query) {
         return this.service.getAll(query);
