@@ -33,13 +33,21 @@ export class ImageService {
 
     }
 
-    getAll(query: Query) {
+    async getAll(query: Query) {
 
         const resultsPerPage = 10;
         const currentPage = Number(query.page) || 1;
         const skip = resultsPerPage * (currentPage - 1);
 
-        return this.model.find().skip(skip).limit(resultsPerPage).exec();
+        const images = await this.model.find().skip(skip).limit(resultsPerPage).exec();
+
+        return images.map(image => {
+            return {
+                title: image.title,
+                description: image.description,
+                url: image.url
+            }
+        });
     }
 
     getAllWithoutPagination() {
