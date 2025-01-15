@@ -16,4 +16,9 @@ export class ImageController {
     create(@Body() body: CreateImageDTO) {
         return this.service.create(body);
     }
+
+    @Post('seed')
+    seed() {
+        return this.service.seed();
+    }
 }
