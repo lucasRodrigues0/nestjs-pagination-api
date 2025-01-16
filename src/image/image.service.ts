@@ -35,7 +35,7 @@ export class ImageService {
 
     async getAll(query: Query) {
 
-        const resultsPerPage = 10;
+        const resultsPerPage = Number(query.resultsPerPage) ?? 10;
         const currentPage = Number(query.page) || 1;
         const skip = resultsPerPage * (currentPage - 1);
 
