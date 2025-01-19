@@ -11,12 +11,14 @@ export class ImageService {
     
     constructor(@InjectModel(Image.name) private model: Model<Image>) { }
     
-    async seed() {
+    async seed(query: Query) {
+
+        const records: number = Number(query.records);
 
         const images: Image[] = [];
 
         //código de gambiarra para fazer seed do banco de dados
-        for(let i = 0; i < 86; i++) {
+        for(let i = 0; i < records; i++) {
             const image = await this.model.create({
                 title: faker.book.title(),
                 description: faker.lorem.paragraph(),

@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ImageService } from './image.service';
 import { CreateImageDTO } from './dto/createImage.dto';
+import { query } from 'express';
 
 @Controller('image')
 export class ImageController {
@@ -23,7 +24,7 @@ export class ImageController {
     }
 
     @Post('seed')
-    seed() {
-        return this.service.seed();
+    seed(@Query() query) {
+        return this.service.seed(query);
     }
 }
