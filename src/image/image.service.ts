@@ -41,7 +41,15 @@ export class ImageService {
         const currentPage = Number(query.page) || 1;
         const skip = resultsPerPage * (currentPage - 1);
 
-        return await this.model.find().skip(skip).limit(resultsPerPage).exec();
+        const images = await this.model.find().countDocuments();
+
+        const totalPages = Math.ceil(images / resultsPerPage);
+
+        return {
+            results: await this.model.find().skip(skip).limit(resultsPerPage).exec(),
+            totalPages
+        }
+
     }
 
     getAllWithoutPagination() {
