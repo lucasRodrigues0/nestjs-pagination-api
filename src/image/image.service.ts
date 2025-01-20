@@ -41,9 +41,9 @@ export class ImageService {
         const currentPage = Number(query.page) || 1;
         const skip = resultsPerPage * (currentPage - 1);
 
-        const images = await this.model.find().countDocuments();
+        const totalImages = await this.model.find().countDocuments();
 
-        const totalPages = Math.ceil(images / resultsPerPage);
+        const totalPages = Math.ceil(totalImages / resultsPerPage);
 
         return {
             results: await this.model.find().skip(skip).limit(resultsPerPage).exec(),
