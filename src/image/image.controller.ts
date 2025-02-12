@@ -22,9 +22,4 @@ export class ImageController {
     create(@Body() body: CreateImageDTO) {
         return this.service.create(body);
     }
-
-    @Post('seed')
-    seed(@Query() query) {
-        return this.service.seed(query);
-    }
 }
