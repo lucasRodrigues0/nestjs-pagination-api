@@ -4,7 +4,6 @@ import { Model } from 'mongoose';
 import { Image } from 'src/schemas/image.schema';
 import { CreateImageDTO } from './dto/createImage.dto';
 import { Query } from 'express-serve-static-core';
-import { faker } from '@faker-js/faker';
 
 @Injectable()
 export class ImageService {
@@ -20,6 +19,8 @@ export class ImageService {
         const totalImages = await this.model.find().countDocuments();
 
         const totalPages = Math.ceil(totalImages / resultsPerPage);
+
+        console.log(process.env.DB_CONNECTION_STRING);
 
         return {
             results: await this.model.find().skip(skip).limit(resultsPerPage).exec(),
