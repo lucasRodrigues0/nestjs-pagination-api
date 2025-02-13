@@ -12,15 +12,13 @@ export class ImageService {
 
     async getAll(query: Query) {
 
-        const resultsPerPage = Number(query.resultsPerPage) ?? 10;
-        const currentPage = Number(query.page) ?? 1;
+        const resultsPerPage = Number(query.resultsPerPage) || 10;
+        const currentPage = Number(query.page) || 1;
         const skip = resultsPerPage * (currentPage - 1);
 
         const totalImages = await this.model.find().countDocuments();
 
         const totalPages = Math.ceil(totalImages / resultsPerPage);
-
-        console.log(process.env.DB_CONNECTION_STRING);
 
         return {
             results: await this.model.find().skip(skip).limit(resultsPerPage).exec(),
